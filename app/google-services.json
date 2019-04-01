@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "52110307002",
+    "firebase_url": "https://feiradasprofissoesav2.firebaseio.com",
+    "project_id": "feiradasprofissoesav2",
+    "storage_bucket": "feiradasprofissoesav2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52110307002:android:652f253ea588d4b8",
+        "android_client_info": {
+          "package_name": "com.example.feiradasprofissoes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52110307002-u2o0365589lkn5pmcjuh5u98idpj8qu2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.feiradasprofissoes",
+            "certificate_hash": "cfef8f4d2c34d897ec231b2ce6a236a9ecd3a794"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGGYC4AB6s4_dCy3ad8g4mcDKF-cRZ0w8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52110307002-1bm3mabb9ue29lv9g28alrpbuinii069.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

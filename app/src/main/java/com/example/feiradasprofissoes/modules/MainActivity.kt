@@ -1,7 +1,8 @@
-package com.example.feiradasprofissoes
+package com.example.feiradasprofissoes.modules
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.feiradasprofissoes.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,3 +11,4 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 }
+
