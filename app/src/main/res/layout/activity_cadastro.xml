@@ -1,169 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
-    <EditText
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/campoNomeCadastroLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="32dp"
+        android:focusableInTouchMode="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
             android:id="@+id/campoNomeCadastro"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
             android:hint="Digite seu nome aqui"
             android:inputType="textPersonName|textNoSuggestions|textCapWords"
             android:maxLines="1"
-            android:textColor="#505050"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="32dp"
-            android:layout_marginStart="32dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="64dp"/>
+            android:textColor="#505050" />
 
-    <EditText
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/campoEmailCadastroLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:focusableInTouchMode="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoNomeCadastroLayout">
+
+        <EditText
             android:id="@+id/campoEmailCadastro"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
             android:hint="Digite seu email aqui"
             android:inputType="textEmailAddress|textNoSuggestions"
             android:maxLines="1"
-            android:textColor="#505050"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="32dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/campoNomeCadastro"/>
-
-    <android.support.design.widget.TextInputLayout
-            android:id="@+id/senhaCadastroLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/campoEmailCadastro"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp">
-
-        <EditText
-                android:id="@+id/campoSenhaCadastro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Digite sua senha aqui"
-                android:inputType="numberPassword"
-                android:maxLines="1"
-                android:textColor="#505050"/>
+            android:textColor="#505050" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-            android:id="@+id/confirmaSenhaCadastroLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/senhaCadastroLayout"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp">
+        android:id="@+id/senhaCadastroLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoEmailCadastroLayout"
+        app:passwordToggleEnabled="true">
 
         <EditText
-                android:id="@+id/campoConfirmaSenhaCadastro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Confirme sua senha"
-                android:inputType="numberPassword"
-                android:maxLines="1"
-                android:textColor="#505050"/>
+            android:id="@+id/campoSenhaCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite sua senha aqui"
+            android:inputType="numberPassword"
+            android:maxLines="1"
+            android:textColor="#505050" />
 
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/confirmaSenhaCadastroLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:focusableInTouchMode="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/senhaCadastroLayout"
+        app:passwordToggleEnabled="true">
 
-    <EditText
+        <EditText
+            android:id="@+id/campoConfirmaSenhaCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirme sua senha"
+            android:inputType="numberPassword"
+            android:maxLines="1"
+            android:textColor="#505050" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/campoNomeEscolaCadastroLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:focusableInTouchMode="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmaSenhaCadastroLayout">
+
+        <EditText
             android:id="@+id/campoNomeEscolaCadastro"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Qual o nome de sua escola?"
             android:inputType="textCapSentences|textNoSuggestions"
             android:maxLines="1"
-            android:textColor="#505050"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/confirmaSenhaCadastroLayout"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"/>
+            android:textColor="#505050" />
 
-    <EditText
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/campoNomeCidadeCadastroLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:focusableInTouchMode="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoNomeEscolaCadastroLayout">
+
+        <EditText
             android:id="@+id/campoNomeCidadeCadastro"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Qual a cidade onde você mora?"
             android:inputType="textCapSentences|textNoSuggestions"
             android:maxLines="1"
-            android:textColor="#505050"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/campoNomeEscolaCadastro" android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp" android:layout_marginEnd="32dp" android:layout_marginRight="32dp"/>
+            android:textColor="#505050" />
+
+    </android.support.design.widget.TextInputLayout>
+
     <Button
-            android:text="Cadastrar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/cadastroButton"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="32dp"
-            android:layout_marginStart="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:textSize="18sp"
-            android:textStyle="bold" android:layout_marginBottom="64dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+        android:id="@+id/cadastroButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="64dp"
+        android:text="Cadastrar"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/tipoEscolaCadastro" android:layout_marginEnd="32dp" android:layout_marginRight="32dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="32dp" android:layout_marginStart="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/labelTipoEscola"
-            android:layout_marginTop="16dp"/>
+        android:id="@+id/tipoEscolaCadastro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelTipoEscola" />
 
     <TextView
-            android:text="Defina abaixo o tipo de sua escola"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/labelTipoEscola" android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/campoNomeCidadeCadastro" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="32dp" android:layout_marginRight="32dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="32dp"
-            android:layout_marginStart="32dp" android:textSize="18sp" android:textStyle="bold"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/cadastroButton"
-            app:layout_constraintVertical_bias="0.0"/>
+        android:id="@+id/labelTipoEscola"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="Defina abaixo o tipo de sua escola"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cadastroButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoNomeCidadeCadastroLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
     <ProgressBar
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:visibility="gone"/>
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

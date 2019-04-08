@@ -11,7 +11,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:keepScreenOn="true"
-            android:text="OI"
+            android:text="OI, eu sou a splash screen"
             android:textColor="#000"
             android:textSize="25sp" />
 

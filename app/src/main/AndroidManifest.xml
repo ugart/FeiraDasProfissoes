@@ -27,12 +27,12 @@
         </activity>
 
         <activity
-                android:name="com.example.feiradasprofissoes.modules.login.CadastroActivity"
+                android:name="com.example.feiradasprofissoes.modules.login.view.CadastroActivity"
                 android:screenOrientation="portrait">
         </activity>
 
         <activity
-                android:name="com.example.feiradasprofissoes.modules.login.LoginActivity"
+                android:name="com.example.feiradasprofissoes.modules.login.view.LoginActivity"
                 android:screenOrientation="portrait">
         </activity>
 

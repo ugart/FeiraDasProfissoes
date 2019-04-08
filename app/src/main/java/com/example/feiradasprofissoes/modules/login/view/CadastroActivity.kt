@@ -1,9 +1,10 @@
-package com.example.feiradasprofissoes.modules.login
+package com.example.feiradasprofissoes.modules.login.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
+import android.util.Patterns
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
@@ -11,8 +12,12 @@ import com.example.feiradasprofissoes.R
 import com.example.feiradasprofissoes.modules.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_cadastro.*
+import org.w3c.dom.Text
 
+//TODO: Enviar todas as informações de cadastro ao firebase
 //TODO: Ajustar codigo para a arquitetura MVVM e criar um util para trocar toasts por snackbars
+//TODO: Fazer verificação de internet ao tentar realizar o cadastro
+
 class CadastroActivity : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null
@@ -25,13 +30,13 @@ class CadastroActivity : AppCompatActivity() {
 
         cadastroButton.setOnClickListener {
 
-            checks()
+            validations()
 
         }
 
     }
 
-    private fun checks() {
+    private fun validations() {
 
         val nome = campoNomeCadastro.text.toString().trim()
         val email = campoEmailCadastro.text.toString().trim()
@@ -45,9 +50,13 @@ class CadastroActivity : AppCompatActivity() {
             return
         }
 
-        //TODO: checar se está no formato correto de email
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this@CadastroActivity, "Por favor, digite seu e-mail", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this@CadastroActivity, "Por favor, digite um e-mail válido", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -56,7 +65,7 @@ class CadastroActivity : AppCompatActivity() {
             return
         }
 
-        if (senha.length < 6) {
+        if (senha.length < 8) {
             Toast.makeText(this@CadastroActivity, "Você precisa de, no mínimo, 6 caracteres para compor sua senha", Toast.LENGTH_SHORT).show()
             return
         }
@@ -87,75 +96,75 @@ class CadastroActivity : AppCompatActivity() {
         if (senha == confirmaSenha) {
 
             mAuth!!.createUserWithEmailAndPassword(email, senha)
-                .addOnCompleteListener(this@CadastroActivity) { task ->
+                    .addOnCompleteListener(this@CadastroActivity) { task ->
 
-                    switchScreenItensVisibility()
-                    progressBar.visibility = GONE
+                        switchScreenItensVisibility()
+                        progressBar.visibility = GONE
 
-                    if (task.isSuccessful) {
+                        if (task.isSuccessful) {
 
-                        startActivity(Intent(this@CadastroActivity, MainActivity::class.java))
+                            startActivity(Intent(this@CadastroActivity, MainActivity::class.java))
+                            finish()
 
-                    } else {
-                        Toast.makeText(this@CadastroActivity, "Seu cadastro falhou!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this@CadastroActivity, "Seu cadastro falhou!", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
         }
 
     }
 
     fun switchScreenItensVisibility() {
 
-        if(campoNomeCadastro.visibility == VISIBLE) {
+        if (campoNomeCadastro.visibility == VISIBLE) {
             campoNomeCadastro.visibility = GONE
         } else {
             campoNomeCadastro.visibility = VISIBLE
         }
 
-        if(campoEmailCadastro.visibility == VISIBLE) {
+        if (campoEmailCadastro.visibility == VISIBLE) {
             campoEmailCadastro.visibility = GONE
         } else {
             campoEmailCadastro.visibility = VISIBLE
         }
 
-        if(senhaCadastroLayout.visibility == VISIBLE) {
+        if (senhaCadastroLayout.visibility == VISIBLE) {
             senhaCadastroLayout.visibility = GONE
         } else {
             senhaCadastroLayout.visibility = VISIBLE
         }
 
-        if(confirmaSenhaCadastroLayout.visibility == VISIBLE) {
+        if (confirmaSenhaCadastroLayout.visibility == VISIBLE) {
             confirmaSenhaCadastroLayout.visibility = GONE
         } else {
             confirmaSenhaCadastroLayout.visibility = VISIBLE
         }
 
-        if(campoNomeEscolaCadastro.visibility == VISIBLE) {
+        if (campoNomeEscolaCadastro.visibility == VISIBLE) {
             campoNomeEscolaCadastro.visibility = GONE
         } else {
             campoNomeEscolaCadastro.visibility = VISIBLE
         }
 
-        if(tipoEscolaCadastro.visibility == VISIBLE) {
+        if (tipoEscolaCadastro.visibility == VISIBLE) {
             tipoEscolaCadastro.visibility = GONE
         } else {
             tipoEscolaCadastro.visibility = VISIBLE
         }
 
-        if(campoNomeCidadeCadastro.visibility == VISIBLE) {
+        if (campoNomeCidadeCadastro.visibility == VISIBLE) {
             campoNomeCidadeCadastro.visibility = GONE
         } else {
             campoNomeCidadeCadastro.visibility = VISIBLE
         }
 
-        if(labelTipoEscola.visibility == VISIBLE) {
+        if (labelTipoEscola.visibility == VISIBLE) {
             labelTipoEscola.visibility = GONE
         } else {
             labelTipoEscola.visibility = VISIBLE
         }
 
     }
-
 
 
 }
