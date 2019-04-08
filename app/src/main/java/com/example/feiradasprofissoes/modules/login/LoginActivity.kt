@@ -1,25 +1,25 @@
-//package com.example.feiradasprofissoes.login
-//
-//import android.os.Bundle
-//import android.support.v7.app.AppCompatActivity
-//import android.util.Log
-//import android.widget.Toast
-//import com.example.feiradasprofissoes.R
-//import com.google.firebase.auth.FirebaseAuth
-//
-//class LoginActivity : AppCompatActivity() {
-//
-//    private val TAG = "FirebaseEmailPassword"
-//
-//    private var mAuth: FirebaseAuth? = null
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_login)
-//
-//        mAuth = FirebaseAuth.getInstance()
-//    }
-//
+package com.example.feiradasprofissoes.modules.login
+
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.widget.Toast
+import com.example.feiradasprofissoes.R
+import com.google.firebase.auth.FirebaseAuth
+
+class LoginActivity : AppCompatActivity() {
+
+    private val TAG = "FirebaseEmailPassword"
+
+    private var mAuth: FirebaseAuth? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
+
+        mAuth = FirebaseAuth.getInstance()
+    }
+
 //    override fun onStart() {
 //        super.onStart()
 //        val currentUser = mAuth!!.currentUser
@@ -80,8 +80,8 @@
 //        updateUI(null)
 //    }
 //
-//
-//
-//
-//
-//}
+
+
+
+
+}

@@ -10,7 +10,15 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".modules.MainActivity">
+
+        <activity android:name=".modules.MainActivity"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+                android:name="com.example.feiradasprofissoes.modules.splash.SplashScreenActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -19,14 +27,13 @@
         </activity>
 
         <activity
-                android:name=".splash.SplashScreenActivity"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppTheme.NoActionBar.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                android:name="com.example.feiradasprofissoes.modules.login.CadastroActivity"
+                android:screenOrientation="portrait">
+        </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+                android:name="com.example.feiradasprofissoes.modules.login.LoginActivity"
+                android:screenOrientation="portrait">
         </activity>
 
     </application>

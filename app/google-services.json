@@ -21,6 +21,14 @@
             "package_name": "com.example.feiradasprofissoes",
             "certificate_hash": "cfef8f4d2c34d897ec231b2ce6a236a9ecd3a794"
           }
+        },
+        {
+          "client_id": "52110307002-1pkoon21mhk0dlss7vq8cslbsf3l57bm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.feiradasprofissoes",
+            "certificate_hash": "8dcf359de9c9c4f915afa169b03904fd5e8e54df"
+          }
         }
       ],
       "api_key": [

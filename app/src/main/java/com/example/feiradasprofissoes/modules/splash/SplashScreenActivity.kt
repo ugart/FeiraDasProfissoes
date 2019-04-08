@@ -1,11 +1,11 @@
-package com.example.feiradasprofissoes.splash
+package com.example.feiradasprofissoes.modules.splash
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import com.example.feiradasprofissoes.R
-import com.example.feiradasprofissoes.modules.MainActivity
+import com.example.feiradasprofissoes.modules.login.CadastroActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     //TODO: tratar splash pra quando receber notificações levar até a tela específica
@@ -21,7 +21,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
 
         exitSplashScreen(Runnable {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+            startActivity(Intent(applicationContext, CadastroActivity::class.java))
             finish()
         })
 
