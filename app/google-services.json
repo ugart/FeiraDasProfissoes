@@ -29,6 +29,10 @@
             "package_name": "com.example.feiradasprofissoes",
             "certificate_hash": "8dcf359de9c9c4f915afa169b03904fd5e8e54df"
           }
+        },
+        {
+          "client_id": "52110307002-1bm3mabb9ue29lv9g28alrpbuinii069.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [

@@ -1,5 +1,6 @@
 package com.example.feiradasprofissoes.modules.login.view
 
+
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -10,15 +11,18 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Patterns
-import android.view.inputmethod.InputMethodManager
 import com.example.feiradasprofissoes.R
 import com.example.feiradasprofissoes.modules.MainActivity
+import com.example.feiradasprofissoes.modules.util.hideKeyboard
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
+
 
 class LoginActivity : AppCompatActivity() {
 
-    //TODO: Fazer verificação de internet ao tentar realizar o login
+    private var mDatabase: DatabaseReference? = null
 
     private var mAuth: FirebaseAuth? = null
 
@@ -27,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         mAuth = FirebaseAuth.getInstance()
+        mDatabase = FirebaseDatabase.getInstance().reference
 
         loginButton.setOnClickListener {
             validations()
@@ -40,22 +45,18 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validations() {
 
-        //fazer o teclado sumir
+        constraintLayoutLogin.hideKeyboard()
 
         val email = campoEmail.text.toString().trim()
         val senha = campoSenha.text.toString().trim()
 
         if (TextUtils.isEmpty(email)) {
-            val snack = Snackbar.make(constraintLayoutLogin, "Por favor, digite seu e-mail", Snackbar.LENGTH_SHORT)
-            snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
-            snack.show()
+            campoEmail.error = "Por favor, digite seu e-mail"
             return
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            val snack = Snackbar.make(constraintLayoutLogin, "Por favor, digite um e-mail válido", Snackbar.LENGTH_SHORT)
-            snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
-            snack.show()
+            campoEmail.error = "Por favor, digite um e-mail válido"
             return
         }
 
@@ -67,33 +68,60 @@ class LoginActivity : AppCompatActivity() {
         }
 
         if (senha.length < 8) {
-            val snack = Snackbar.make(constraintLayoutLogin, "Ops...! Você deve ter digitado algo errado. A senha contém, no mínimo, 8 caracteres. Confira com cuidado!",
-                    Snackbar.LENGTH_SHORT)
+            val snack = Snackbar.make(
+                constraintLayoutLogin,
+                "Ops...! Você deve ter digitado algo errado. A senha contém, no mínimo, 8 caracteres. Confira com cuidado!",
+                Snackbar.LENGTH_SHORT
+            )
             snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
             snack.show()
             return
         }
 
         if (isNetworkAvailable()) {
-//TODO: verificar pq ele continua dizendo que precisa verificar o e-mail mesmo depois de estar com o e-mail verificado (E faz o login mesmo com esse aviso)
-
 
             mAuth!!.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this@LoginActivity) { task ->
 
-                if (mAuth?.currentUser!!.isEmailVerified) {
+                if (mAuth?.currentUser != null) {
 
-                    if (task.isSuccessful) {
+                    if (mAuth?.currentUser!!.isEmailVerified) {
 
-                        startNewActivity()
+                        if (task.isSuccessful) {
+
+                            if (checkPemaneceLogado.isChecked) {
+                                checkBoxIsChecked(true)
+//                                checkBoxIsMarked(true)
+                            }
+
+                            userLoggedIn(true)
+                            startNewActivity()
+
+                        } else {
+                            val snack = Snackbar.make(
+                                constraintLayoutLogin,
+                                "Falha ao tentar realizar o login. Confira seus dados!",
+                                Snackbar.LENGTH_SHORT
+                            )
+                            snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
+                            snack.show()
+                        }
 
                     } else {
-                        val snack = Snackbar.make(constraintLayoutLogin, "Falha ao tentar realizar o login. Confira seus dados!", Snackbar.LENGTH_SHORT)
-                        snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
+                        val snack = Snackbar.make(
+                            constraintLayoutLogin,
+                            "Você precisa verificar seu e-mail para realizar o login no aplicativo",
+                            Snackbar.LENGTH_SHORT
+                        )
+                        snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
                         snack.show()
                     }
 
                 } else {
-                    val snack = Snackbar.make(constraintLayoutLogin, "Você precisa verificar seu e-mail para realizar o login no aplicativo", Snackbar.LENGTH_SHORT)
+                    val snack = Snackbar.make(
+                        constraintLayoutLogin,
+                        "Este e-mail não está cadastrado. Realize seu cadastro para utilizar o aplicativo!",
+                        Snackbar.LENGTH_SHORT
+                    )
                     snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
                     snack.show()
                 }
@@ -101,11 +129,24 @@ class LoginActivity : AppCompatActivity() {
             }
 
         } else {
-            val snack = Snackbar.make(constraintLayoutLogin, "Você está sem conexão com a internet!", Snackbar.LENGTH_SHORT)
+            val snack =
+                Snackbar.make(constraintLayoutLogin, "Você está sem conexão com a internet!", Snackbar.LENGTH_SHORT)
             snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
             snack.show()
         }
 
+    }
+
+    private fun userLoggedIn(isUserLoggedIn: Boolean) {
+        mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("userLoggedIn")?.setValue(isUserLoggedIn)
+    }
+
+    private fun checkBoxIsChecked(isCheckBoxChecked: Boolean) {
+        mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("checkBoxChecked")?.setValue(isCheckBoxChecked)
+    }
+
+    private fun checkBoxIsMarked(isCheckBoxMarked: Boolean) {
+        mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("checkBoxMarked")?.setValue(isCheckBoxMarked)
     }
 
     private fun startNewActivity() {
