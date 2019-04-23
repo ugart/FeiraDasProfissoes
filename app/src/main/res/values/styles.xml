@@ -14,9 +14,8 @@
     <style name="AppTheme.NoActionBar.StatusBar" parent="AppTheme.NoActionBar"/>
 
     <style name="AppTheme.NoActionBar.Activity" parent="AppTheme.NoActionBar">
-        <item name="colorPrimary">@android:color/white</item>
-        <item name="colorPrimaryDark">@android:color/white</item>
-        <item name="colorAccent">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

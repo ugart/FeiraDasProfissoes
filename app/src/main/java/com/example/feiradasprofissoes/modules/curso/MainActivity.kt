@@ -1,4 +1,4 @@
-package com.example.feiradasprofissoes.modules
+package com.example.feiradasprofissoes.modules.curso
 
 import android.content.Context
 import android.content.Intent
@@ -10,8 +10,8 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.example.feiradasprofissoes.R
-import com.example.feiradasprofissoes.modules.curso.DetalheCursoActivity
 import com.example.feiradasprofissoes.modules.login.view.LoginActivity
+import com.example.feiradasprofissoes.modules.util.ConnectionUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_login.*
@@ -146,13 +146,12 @@ class MainActivity : AppCompatActivity() {
     //--------------------------------------- FUNÇÕES DE LOGOUT INÍCIO ------------------------------------------\\
 
     private fun botaoLogoutClicked() {
-        if (isNetworkAvailable()) {
-
+        if (ConnectionUtils.isConnectedToInternet(this)) {
             userLoggedOut(false)
             mAuth?.signOut()
             userLoggedOutChangeActivity()
         } else {
-            val snack = Snackbar.make(constraintLayoutLogin, "Você está sem conexão com a internet!", Snackbar.LENGTH_SHORT)
+            val snack = Snackbar.make(constraintLayoutMainActivity, "Você está sem conexão com a internet!", Snackbar.LENGTH_SHORT)
             snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
             snack.show()
         }
@@ -171,14 +170,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext, LoginActivity::class.java))
             finish()
         }
-    }
-
-    private fun isNetworkAvailable(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE)
-        return if (connectivityManager is ConnectivityManager) {
-            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
-            networkInfo?.isConnected ?: false
-        } else false
     }
 
     override fun finish() {

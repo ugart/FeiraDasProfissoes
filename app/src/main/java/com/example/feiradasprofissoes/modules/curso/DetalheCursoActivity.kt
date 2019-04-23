@@ -1,9 +1,12 @@
 package com.example.feiradasprofissoes.modules.curso
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.example.feiradasprofissoes.R
+import com.example.feiradasprofissoes.modules.util.ConnectionUtils
 import kotlinx.android.synthetic.main.activity_detalhe_curso.*
 
 class DetalheCursoActivity : AppCompatActivity() {
@@ -22,18 +25,36 @@ class DetalheCursoActivity : AppCompatActivity() {
 
         nomeCurso.text = titleCurso
         descricaoCurso.text = textCurso
-        webviewCurso.text = getString(R.string.maisInfoCurso, linkCurso)
+        irWebviewCurso.text = getString(R.string.maisInfoCurso)
+
+        irWebviewCurso.setOnClickListener {
+
+            if (ConnectionUtils.isConnectedToInternet(this)) {
+                val intent = Intent(this, WebViewCursoActivity::class.java)
+
+                intent.putExtra("LINK_CURSO", linkCurso)
+
+                startActivity(intent)
+            } else {
+                val snack = Snackbar.make(constraintLayoutDetalheCurso, "Você está sem conexão com a internet!", Snackbar.LENGTH_SHORT)
+                snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
+                snack.show()
+            }
+
+        }
+
+
 
         //TODO: abrir webview (se tiver com internet) ao clicar no link
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbarDetalheCurso)
 
         if (supportActionBar != null) {
             supportActionBar!!.title = toolbarTitleCurso
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
 
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        toolbarDetalheCurso.setNavigationOnClickListener { onBackPressed() }
 
         when (id) {
             1.toString() -> imageCurso.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ccimage))

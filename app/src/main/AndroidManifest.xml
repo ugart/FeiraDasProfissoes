@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".modules.MainActivity"
+            android:name=".modules.curso.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.StatusBar"/>
 
@@ -47,12 +48,17 @@
             android:name=".modules.curso.DetalheCursoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.StatusBar"
-            android:parentActivityName=".modules.MainActivity"
+            android:parentActivityName=".modules.curso.MainActivity"
             tools:targetApi="jelly_bean">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.feiradasprofissoes.modules.MainActivity"/>
+            android:value="com.example.feiradasprofissoes.modules.curso.MainActivity"/>
         </activity>
+
+        <activity
+            android:name=".modules.curso.WebViewCursoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.StatusBar"/>
 
     </application>
 

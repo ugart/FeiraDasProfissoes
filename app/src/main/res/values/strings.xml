@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Feira das Profissões UNIFOR</string>
-    <string name="maisInfoCurso">Para mais informações sobre este curso, acesse sua página no site da UNIFOR a partir do link a seguir: %1$s</string>
+    <string name="maisInfoCurso">Para mais informações sobre este curso, acesse sua página no site da UNIFOR. Clique aqui para ir até lá!</string>
 </resources>

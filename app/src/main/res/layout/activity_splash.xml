@@ -3,7 +3,8 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="#ffffff"
-             tools:context=".modules.splash.SplashScreenActivity">
+             tools:context=".modules.splash.SplashScreenActivity"
+             android:id="@+id/constraintLayoutSplashScreen">
 
     <TextView
             android:id="@+id/fullscreen_content"
@@ -13,6 +14,6 @@
             android:keepScreenOn="true"
             android:text="OI, eu sou a splash screen"
             android:textColor="#000"
-            android:textSize="25sp" />
+            android:textSize="25sp"/>
 
 </FrameLayout>

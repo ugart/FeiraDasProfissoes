@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import com.example.feiradasprofissoes.R
-import com.example.feiradasprofissoes.modules.MainActivity
+import com.example.feiradasprofissoes.modules.curso.MainActivity
 import com.example.feiradasprofissoes.modules.login.view.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -42,7 +42,7 @@ class SplashScreenActivity : AppCompatActivity() {
     private fun exitSplashScreen(runnable: Runnable) {
         Handler().postDelayed(
                 runnable,
-                1000
+                2500
         )
     }
 
@@ -101,13 +101,6 @@ class SplashScreenActivity : AppCompatActivity() {
         mDatabase?.removeEventListener(listener)
     }
 
-    private fun isNetworkAvailable(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE)
-        return if (connectivityManager is ConnectivityManager) {
-            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
-            networkInfo?.isConnected ?: false
-        } else false
-    }
 
 }
 

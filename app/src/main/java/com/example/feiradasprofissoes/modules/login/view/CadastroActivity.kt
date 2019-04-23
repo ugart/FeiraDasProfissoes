@@ -14,9 +14,9 @@ import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import com.example.feiradasprofissoes.R
 import com.example.feiradasprofissoes.modules.UserData
+import com.example.feiradasprofissoes.modules.util.ConnectionUtils
 import com.example.feiradasprofissoes.modules.util.hideKeyboard
 import com.example.feiradasprofissoes.modules.util.setGone
 import com.example.feiradasprofissoes.modules.util.setVisible
@@ -25,8 +25,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_cadastro.*
 
-
-//TODO: Enviar todas as informações de cadastro ao firebase
 //TODO: Ajustar codigo para a arquitetura MVVM
 //TODO: Fazer verificação de internet ao tentar realizar o cadastro
 
@@ -56,6 +54,14 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         cadastroButton.setOnClickListener {
             validations()
         }
+
+        setSupportActionBar(toolbarCadastro)
+
+        if (supportActionBar != null) {
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        }
+
+        toolbarCadastro.setNavigationOnClickListener { onBackPressed() }
 
     }
 
@@ -103,9 +109,9 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
         if (senha.length < 8) {
             val snack = Snackbar.make(
-                constraintLayoutCadastro,
-                "Você precisa de, no mínimo, 8 (oito) caracteres para compor sua senha",
-                Snackbar.LENGTH_SHORT
+                    constraintLayoutCadastro,
+                    "Você precisa de, no mínimo, 8 (oito) caracteres para compor sua senha",
+                    Snackbar.LENGTH_SHORT
             )
             snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
             snack.show()
@@ -121,7 +127,7 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
         if (senha != confirmaSenha) {
             val snack =
-                Snackbar.make(constraintLayoutCadastro, "As senhas digitadas não conferem", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(constraintLayoutCadastro, "As senhas digitadas não conferem", Snackbar.LENGTH_SHORT)
             snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
             snack.show()
             return
@@ -148,42 +154,42 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             mAuth?.fetchSignInMethodsForEmail(email)?.addOnCompleteListener { task ->
                 if (task.result.signInMethods!!.size == 0) {
 
-                    if (isNetworkAvailable()) {
+                    if (ConnectionUtils.isConnectedToInternet(this)) {
 
                         mAuth!!.createUserWithEmailAndPassword(email, senha)
-                            .addOnCompleteListener(this@CadastroActivity) {
+                                .addOnCompleteListener(this@CadastroActivity) {
 
-                                if (task.isSuccessful) {
+                                    if (task.isSuccessful) {
 
-                                    verifyEmail()
-                                    writeNewUser(
-                                        mAuth?.currentUser!!.uid,
-                                        nome,
-                                        email,
-                                        nomeCidade,
-                                        nomeEscola,
-                                        tipoEscolaEscolhido,
-                                        false,
-                                        false
-                                    )
+                                        verifyEmail()
+                                        writeNewUser(
+                                                mAuth?.currentUser!!.uid,
+                                                nome,
+                                                email,
+                                                nomeCidade,
+                                                nomeEscola,
+                                                tipoEscolaEscolhido,
+                                                false,
+                                                false
+                                        )
 
-                                } else {
-                                    val snack = Snackbar.make(
-                                        constraintLayoutCadastro,
-                                        "Seu cadastro falhou!",
-                                        Snackbar.LENGTH_SHORT
-                                    )
-                                    snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
-                                    snack.show()
+                                    } else {
+                                        val snack = Snackbar.make(
+                                                constraintLayoutCadastro,
+                                                "Seu cadastro falhou!",
+                                                Snackbar.LENGTH_SHORT
+                                        )
+                                        snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
+                                        snack.show()
+                                    }
+
                                 }
-
-                            }
 
                     } else {
                         val snack = Snackbar.make(
-                            constraintLayoutCadastro,
-                            "Você está sem conexão com a internet!",
-                            Snackbar.LENGTH_SHORT
+                                constraintLayoutCadastro,
+                                "Você está sem conexão com a internet!",
+                                Snackbar.LENGTH_SHORT
                         )
                         snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
                         snack.show()
@@ -191,9 +197,9 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
                 } else {
                     val snack = Snackbar.make(
-                        constraintLayoutCadastro,
-                        "Já existe uma conta criada com o e-mail informado!",
-                        Snackbar.LENGTH_SHORT
+                            constraintLayoutCadastro,
+                            "Já existe uma conta criada com o e-mail informado!",
+                            Snackbar.LENGTH_SHORT
                     )
                     snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
                     snack.show()
@@ -206,17 +212,17 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
     }
 
     private fun writeNewUser(
-        userId: String,
-        name: String,
-        email: String,
-        cityName: String,
-        schoolName: String,
-        schoolType: String,
-        isUserLoggedIn: Boolean,
-        isCheckBoxChecked: Boolean
+            userId: String,
+            name: String,
+            email: String,
+            cityName: String,
+            schoolName: String,
+            schoolType: String,
+            isUserLoggedIn: Boolean,
+            isCheckBoxChecked: Boolean
     ) {
         val userData =
-            UserData(userId, name, email, cityName, schoolName, schoolType, isUserLoggedIn, isCheckBoxChecked)
+                UserData(userId, name, email, cityName, schoolName, schoolType, isUserLoggedIn, isCheckBoxChecked)
         mDatabase?.child("user")?.child(userId)?.setValue(userData)
     }
 
@@ -240,9 +246,9 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
                     dialog.show()
                 } else {
                     val snack = Snackbar.make(
-                        constraintLayoutCadastro,
-                        "Desculpe, não conseguimos enviar seu e-mail de verificação",
-                        Snackbar.LENGTH_SHORT
+                            constraintLayoutCadastro,
+                            "Desculpe, não conseguimos enviar seu e-mail de verificação",
+                            Snackbar.LENGTH_SHORT
                     )
                     snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
                     snack.show()
@@ -251,14 +257,6 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             }
 
         }
-    }
-
-    private fun isNetworkAvailable(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE)
-        return if (connectivityManager is ConnectivityManager) {
-            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
-            networkInfo?.isConnected ?: false
-        } else false
     }
 
     private fun startNewActivity() {
