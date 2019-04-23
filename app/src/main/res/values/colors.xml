@@ -4,13 +4,13 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <!--Cores da Snackbar-->
     <color name="red">#D1412B</color>
     <color name="green">#4CAF50</color>
     <color name="yellow">#FFC107</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="mediumGray">#505050</color>
+    <color name="lightBlue">#0645AD</color>
     <color name="lightGray">#767676</color>
 
 </resources>

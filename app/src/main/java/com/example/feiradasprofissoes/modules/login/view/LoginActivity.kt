@@ -145,10 +145,6 @@ class LoginActivity : AppCompatActivity() {
         mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("checkBoxChecked")?.setValue(isCheckBoxChecked)
     }
 
-    private fun checkBoxIsMarked(isCheckBoxMarked: Boolean) {
-        mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("checkBoxMarked")?.setValue(isCheckBoxMarked)
-    }
-
     private fun startNewActivity() {
         val intent = Intent(this@LoginActivity, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

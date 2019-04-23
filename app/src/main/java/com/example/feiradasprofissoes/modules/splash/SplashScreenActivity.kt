@@ -31,18 +31,18 @@ class SplashScreenActivity : AppCompatActivity() {
 
         override fun onDataChange(dataSnapshot: DataSnapshot) {
             checkBoxChecked =
-                dataSnapshot.child("user").child(mAuth?.currentUser!!.uid).child("checkBoxChecked")
-                    .getValue(Boolean::class.java)
+                    dataSnapshot.child("user").child(mAuth?.currentUser!!.uid).child("checkBoxChecked")
+                            .getValue(Boolean::class.java)
             userLoggedIn = dataSnapshot.child("user").child(mAuth?.currentUser!!.uid).child("userLoggedIn")
-                .getValue(Boolean::class.java)
+                    .getValue(Boolean::class.java)
         }
 
     }
 
     private fun exitSplashScreen(runnable: Runnable) {
         Handler().postDelayed(
-            runnable,
-            2500
+                runnable,
+                1000
         )
     }
 
@@ -70,7 +70,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
                     if (checkBoxChecked != true) {
                         mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("userLoggedIn")
-                            ?.setValue(false)
+                                ?.setValue(false)
                         startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
                         finish()
                     } else {
@@ -80,7 +80,7 @@ class SplashScreenActivity : AppCompatActivity() {
                             finish()
                         } else {
                             mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("checkBoxChecked")
-                                ?.setValue(false)
+                                    ?.setValue(false)
                             startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
                             finish()
                         }
