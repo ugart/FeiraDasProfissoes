@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Feira das Profissões UNIFOR</string>
     <string name="maisInfoCurso">Para mais informações sobre este curso, acesse sua página no site da UNIFOR. Clique aqui para ir até lá!</string>
+
+    <string name="editar_foto">Editar Foto</string>
+    <string name="escolher_da_galeria">Escolher da galeria</string>
+    <string name="selecione_sua_foto">Selecione sua foto</string>
+    <string name="tirar_foto">Tirar foto</string>
+    <string name="erro_foto">Erro ao iniciar câmera</string>
+    <string name="erro_selecionar_foto">Erro ao carregar foto</string>
+    <string name="label_sorteio_insta">Clique na imagem acima para trocar sua foto e no botão abaixo para compartilhá-la no Instagram. Tire uma foto bem legal e participe do sorteio!</string>
+    <string name="botao_compartilhar_instagram">COMPARTILHAR</string>
+
 </resources>

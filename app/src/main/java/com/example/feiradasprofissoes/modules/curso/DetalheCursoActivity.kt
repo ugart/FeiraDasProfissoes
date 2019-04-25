@@ -43,10 +43,6 @@ class DetalheCursoActivity : AppCompatActivity() {
 
         }
 
-
-
-        //TODO: abrir webview (se tiver com internet) ao clicar no link
-
         setSupportActionBar(toolbarDetalheCurso)
 
         if (supportActionBar != null) {
