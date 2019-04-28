@@ -6,7 +6,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
-import android.support.v4.content.FileProvider
+import android.util.Log
+import androidx.core.content.FileProvider
 import com.example.feiradasprofissoes.R
 import java.io.File
 import java.io.IOException
@@ -23,7 +24,6 @@ open class CameraUtil {
 
     private var currentPhotoPath : File? = null
 
-
     fun dispatchTakePictureIntent(activity: Activity) {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
@@ -31,16 +31,14 @@ open class CameraUtil {
 
             var photoFile: File? = null
             try {
-                photoFile = createImageFile(activity)
+                photoFile = createImageFile()
             } catch (ex: IOException) {
                 alertBuilderUtil.alertBuilder(R.string.erro_foto, AlertBuilderUtil.Type.ERROR, activity)
             }
 
 
             if (photoFile != null) {
-                val photoURI = FileProvider.getUriForFile(activity,
-                        "com.example.feiradasprofissoes",
-                        photoFile)
+                val photoURI = FileProvider.getUriForFile(activity, "com.example.feiradasprofissoes", photoFile)
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                 activity.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
             }
@@ -48,23 +46,32 @@ open class CameraUtil {
     }
 
     @Throws(IOException::class)
-    private fun createImageFile(context: Context): File {
+    private fun createImageFile(): File? {
+
+        val mediaStorageDir = File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+            "com.example.feiradasprofissoes"
+        )
+
+        mediaStorageDir.apply {
+            if (!exists()) {
+                if (!mkdirs()) {
+                    Log.d("Feira das Profissões", "failed to create directory")
+                    return null
+                }
+            }
+        }
 
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val imageFileName = "JPEG_" + timeStamp + "_"
-        val storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val image = File.createTempFile(
-                imageFileName,
-                ".jpg",
-                storageDir
-        )
+//        val imageFileName = "PNG_" + timeStamp + "_"
+        val image = File("${mediaStorageDir.path}${File.separator}IMG_$timeStamp.jpg")
 
         currentPhotoPath  = image
         return image
     }
 
     fun getPhotoUri(context: Context): Uri {
-        return FileProvider.getUriForFile(context, "com.example.feiradasprofissoes", currentPhotoPath !!)
+        return FileProvider.getUriForFile(context, "com.example.feiradasprofissoes", currentPhotoPath!!)
     }
 
 }

@@ -10,13 +10,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
+import android.os.Environment
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.feiradasprofissoes.R
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.dialog_camera.*
 import java.io.File
 import com.example.feiradasprofissoes.modules.util.AlertBuilderUtil.Type.ERROR
+import java.io.FileOutputStream
 
 open class SelectImageUtils(val context: Context) {
 
@@ -82,7 +84,7 @@ open class SelectImageUtils(val context: Context) {
                     alertBuilderUtil.alertBuilder(R.string.erro_selecionar_foto, ERROR, activity)
                 }
             } else if (requestCode == CameraUtil.REQUEST_TAKE_PHOTO) {
-                startCropActivity(cameraUtil!!.getPhotoUri(context), activity)
+                startCropActivity(cameraUtil.getPhotoUri(context), activity)
             } else if (requestCode == UCrop.REQUEST_CROP) {
                 if (callback != null && data != null) {
                     UCrop.getOutput(data)?.let {
@@ -111,7 +113,7 @@ open class SelectImageUtils(val context: Context) {
 
     private fun startCropActivity(uri: Uri, activity: Activity) {
 
-        val destinationFileName = System.currentTimeMillis().toString() + ".jpeg"
+        val destinationFileName = System.currentTimeMillis().toString() + ".jpg"
 
         var uCrop = UCrop.of(uri, Uri.fromFile(File(activity.cacheDir, destinationFileName)))
 
@@ -129,10 +131,11 @@ open class SelectImageUtils(val context: Context) {
         options.setHideBottomControls(false)
         options.setFreeStyleCropEnabled(true)
         options.setToolbarTitle(context.getString(R.string.editar_foto))
-        options.setToolbarColor(ContextCompat.getColor(context, R.color.UCropToolbarColor))
-        options.setStatusBarColor(ContextCompat.getColor(context, R.color.UCropStatusBarColor))
+        options.setToolbarColor(ContextCompat.getColor(context, R.color.white))
+        options.setStatusBarColor(ContextCompat.getColor(context, R.color.white))
         options.useSourceImageAspectRatio()
-        options.withAspectRatio(162.0f, 162.0f)
+        options.withMaxResultSize(640, 640)
+        options.withAspectRatio(1f, 1f)
 
         return uCrop.withOptions(options)
     }

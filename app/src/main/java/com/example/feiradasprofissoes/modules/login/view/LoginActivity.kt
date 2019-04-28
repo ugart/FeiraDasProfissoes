@@ -2,18 +2,20 @@ package com.example.feiradasprofissoes.modules.login.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Patterns
 import com.example.feiradasprofissoes.R
+import com.example.feiradasprofissoes.modules.UserData
 import com.example.feiradasprofissoes.modules.curso.MainActivity
 import com.example.feiradasprofissoes.modules.util.ConnectionUtils
 import com.example.feiradasprofissoes.modules.util.hideKeyboard
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -92,11 +94,12 @@ class LoginActivity : AppCompatActivity() {
 
                             if (checkPemaneceLogado.isChecked) {
                                 checkBoxIsChecked(true)
-//                                checkBoxIsMarked(true)
                             }
 
                             userLoggedIn(true)
                             startNewActivity()
+
+//                            Gson().toJson(UserData())
 
                         } else {
                             val snack = Snackbar.make(

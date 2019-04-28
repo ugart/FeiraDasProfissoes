@@ -1,7 +1,7 @@
 package com.example.feiradasprofissoes.modules.util
 
 import android.content.Context
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import com.example.feiradasprofissoes.R
 import kotlinx.android.synthetic.main.alert_box_ok.*
 import kotlinx.android.synthetic.main.alert_box_problem.*

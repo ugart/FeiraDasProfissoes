@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/constraintLayoutCadastro"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:id="@+id/constraintLayoutCadastro"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:background="#FFFFFF">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerCadastro"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarCadastro"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_voltar" />
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/campoNomeCadastroLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -48,9 +48,9 @@
                 android:textColor="#505050"
                 android:textSize="14sp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/campoEmailCadastroLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -73,9 +73,9 @@
                 android:maxLines="1"
                 android:textColor="#505050" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/senhaCadastroLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -98,9 +98,9 @@
                 android:maxLines="1"
                 android:textColor="#505050" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/confirmaSenhaCadastroLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -124,9 +124,9 @@
                 android:maxLines="1"
                 android:textColor="#505050" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/campoNomeEscolaCadastroLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -149,9 +149,9 @@
                 android:maxLines="1"
                 android:textColor="#505050" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/campoNomeCidadeCadastroLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                 android:maxLines="1"
                 android:textColor="#505050" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/cadastroButton"
@@ -224,7 +224,7 @@
             app:layout_constraintTop_toBottomOf="@+id/campoNomeCidadeCadastroLayout"
             app:layout_constraintVertical_bias="0.0" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -243,4 +243,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

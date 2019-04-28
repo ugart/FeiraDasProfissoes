@@ -3,9 +3,9 @@ package com.example.feiradasprofissoes.modules.curso
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.example.feiradasprofissoes.R
 import com.example.feiradasprofissoes.modules.instagramSharing.InstagramSorteioActivity
 import com.example.feiradasprofissoes.modules.login.view.LoginActivity

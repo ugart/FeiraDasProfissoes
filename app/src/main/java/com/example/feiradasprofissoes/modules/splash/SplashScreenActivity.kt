@@ -6,7 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.feiradasprofissoes.R
 import com.example.feiradasprofissoes.modules.curso.MainActivity
 import com.example.feiradasprofissoes.modules.login.view.LoginActivity
