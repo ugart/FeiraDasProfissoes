@@ -20,7 +20,7 @@
         android:id="@+id/alerta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Atenção! Tivemos um problema!"
+        android:text="@string/houve_problema"
         android:textAlignment="center"
         android:textColor="@color/red"
         android:textStyle="bold"/>

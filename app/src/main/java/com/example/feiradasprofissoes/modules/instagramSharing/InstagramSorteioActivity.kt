@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_instagram.*
 import java.io.File
 import java.io.FileOutputStream
+import java.util.*
 
 class InstagramSorteioActivity : AppCompatActivity() {
 
@@ -47,6 +48,11 @@ class InstagramSorteioActivity : AppCompatActivity() {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
 
+        val justifyTag = "<html><body style='text-align:justify;'>%s</body></html>"
+        val dataString = String.format(Locale.getDefault(), justifyTag, "Clique na imagem acima para trocar sua foto e no botão abaixo para compartilhá-la no Instagram. " +
+                "Tire uma foto bem legal, compartilhe a foto acima no Instagram com a hashtag <b> #feiradasprofissoesunifor </b> e participe do sorteio!")
+        label.loadDataWithBaseURL("", dataString, "text/html", "UTF-8", "")
+
         clipboardCopyHashtagButton.setOnClickListener {
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText("", "#feiradasprofissoesunifor")
@@ -67,9 +73,9 @@ class InstagramSorteioActivity : AppCompatActivity() {
 
             } else {
                 val snack = Snackbar.make(
-                    constraintLayoutInstagramSorteio,
-                    "Você está sem conexão com a internet!",
-                    Snackbar.LENGTH_SHORT
+                        constraintLayoutInstagramSorteio,
+                        "Você está sem conexão com a internet!",
+                        Snackbar.LENGTH_SHORT
                 )
                 snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
                 snack.show()
@@ -139,9 +145,9 @@ class InstagramSorteioActivity : AppCompatActivity() {
         try {
             if (photoUri != null) {
                 Picasso.with(this)
-                    .load(photoUri)
-                    .placeholder(R.drawable.ecaimage)
-                    .into(fotoInstaEvento)
+                        .load(photoUri)
+                        .placeholder(R.drawable.ecaimage)
+                        .into(fotoInstaEvento)
             }
         } catch (e: Exception) {
             e.printStackTrace()

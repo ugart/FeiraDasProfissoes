@@ -3,30 +3,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="250dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="30dp"
+    android:layout_gravity="center_horizontal|center_vertical"
     android:background="@drawable/rounded_box"
     android:gravity="center"
-    android:layout_gravity="center_horizontal|center_vertical">
+    android:orientation="vertical"
+    android:padding="30dp">
 
     <ImageView
-            android:id="@+id/imagem"
-            android:src="@drawable/ic_ok"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/imagem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_ok" />
 
     <TextView
-            android:id="@+id/alerta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pronto!"
-            android:textColor="@color/mediumGray"/>
+        android:id="@+id/alerta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pronto"
+        android:textColor="@color/green" />
 
     <TextView
-            android:id="@+id/mensagemOk"
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"/>
+        android:id="@+id/mensagemOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center" />
 </LinearLayout>
