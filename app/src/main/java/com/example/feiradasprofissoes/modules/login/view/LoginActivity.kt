@@ -144,10 +144,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun userLoggedIn(isUserLoggedIn: Boolean) {
         mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("userLoggedIn")?.setValue(isUserLoggedIn)
+        mDatabase?.keepSynced(true)
     }
 
     private fun checkBoxIsChecked(isCheckBoxChecked: Boolean) {
         mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("checkBoxChecked")?.setValue(isCheckBoxChecked)
+        mDatabase?.keepSynced(true)
     }
 
     private fun startNewActivity() {

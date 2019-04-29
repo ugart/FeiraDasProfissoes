@@ -1,9 +1,6 @@
 package com.example.feiradasprofissoes.modules.splash
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
@@ -13,11 +10,8 @@ import com.example.feiradasprofissoes.modules.login.view.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
-
 class SplashScreenActivity : AppCompatActivity() {
-
-    //TODO: tratar splash pra quando receber notificações levar até a tela específica
-
+    
     private var checkBoxChecked: Boolean? = false
 
     private var userLoggedIn: Boolean? = false
@@ -31,18 +25,18 @@ class SplashScreenActivity : AppCompatActivity() {
 
         override fun onDataChange(dataSnapshot: DataSnapshot) {
             checkBoxChecked =
-                    dataSnapshot.child("user").child(mAuth?.currentUser!!.uid).child("checkBoxChecked")
-                            .getValue(Boolean::class.java)
-            userLoggedIn = dataSnapshot.child("user").child(mAuth?.currentUser!!.uid).child("userLoggedIn")
+                dataSnapshot.child("user").child(mAuth?.currentUser!!.uid).child("checkBoxChecked")
                     .getValue(Boolean::class.java)
+            userLoggedIn = dataSnapshot.child("user").child(mAuth?.currentUser!!.uid).child("userLoggedIn")
+                .getValue(Boolean::class.java)
         }
 
     }
 
     private fun exitSplashScreen(runnable: Runnable) {
         Handler().postDelayed(
-                runnable,
-                2500
+            runnable,
+            2500
         )
     }
 
@@ -70,7 +64,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
                     if (checkBoxChecked != true) {
                         mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("userLoggedIn")
-                                ?.setValue(false)
+                            ?.setValue(false)
                         startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
                         finish()
                     } else {
@@ -80,7 +74,7 @@ class SplashScreenActivity : AppCompatActivity() {
                             finish()
                         } else {
                             mDatabase?.child("user")?.child(mAuth?.currentUser!!.uid)?.child("checkBoxChecked")
-                                    ?.setValue(false)
+                                ?.setValue(false)
                             startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
                             finish()
                         }

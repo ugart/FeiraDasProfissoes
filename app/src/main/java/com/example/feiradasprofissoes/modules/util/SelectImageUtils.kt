@@ -10,15 +10,13 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Environment
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.feiradasprofissoes.R
+import com.example.feiradasprofissoes.modules.util.AlertBuilderUtil.Type.ERROR
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.dialog_camera.*
 import java.io.File
-import com.example.feiradasprofissoes.modules.util.AlertBuilderUtil.Type.ERROR
-import java.io.FileOutputStream
 
 open class SelectImageUtils(val context: Context) {
 
@@ -41,17 +39,17 @@ open class SelectImageUtils(val context: Context) {
 
         dialog.escolher_galeria.setOnClickListener {
             val permissionMedia =
-                ContextCompat.checkSelfPermission(it.context, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    ContextCompat.checkSelfPermission(it.context, Manifest.permission.READ_EXTERNAL_STORAGE)
             val permissionWrite =
-                ContextCompat.checkSelfPermission(it.context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    ContextCompat.checkSelfPermission(it.context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
             if (permissionMedia == PackageManager.PERMISSION_GRANTED && permissionWrite == PackageManager.PERMISSION_GRANTED) {
                 abrirGaleria(activity)
                 dialog.dismiss()
             } else {
                 ActivityCompat.requestPermissions(
-                    activity,
-                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 0
+                        activity,
+                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 0
                 )
             }
         }
@@ -59,15 +57,15 @@ open class SelectImageUtils(val context: Context) {
         dialog.escolher_camera.setOnClickListener {
             val permissionCamera = ContextCompat.checkSelfPermission(it.context, Manifest.permission.CAMERA)
             val permissionWrite =
-                ContextCompat.checkSelfPermission(it.context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    ContextCompat.checkSelfPermission(it.context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
             if (permissionCamera == PackageManager.PERMISSION_GRANTED && permissionWrite == PackageManager.PERMISSION_GRANTED) {
                 abrirCamera(activity)
                 dialog.dismiss()
             } else {
                 ActivityCompat.requestPermissions(
-                    activity,
-                    arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 0
+                        activity,
+                        arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 0
                 )
             }
         }
@@ -78,7 +76,7 @@ open class SelectImageUtils(val context: Context) {
         if (resultCode == RESULT_OK) {
 
             if (requestCode == REQUEST_PHOTO_GALLERY) {
-                if (data != null ) {
+                if (data != null) {
                     startCropActivity(data.data!!, activity)
                 } else {
                     alertBuilderUtil.alertBuilder(R.string.erro_selecionar_foto, ERROR, activity)

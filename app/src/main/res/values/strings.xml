@@ -9,7 +9,8 @@
     <string name="erro_foto">Erro ao iniciar câmera</string>
     <string name="erro_selecionar_foto">Erro ao carregar foto</string>
     <string name="label_sorteio_insta">Clique na imagem acima para trocar sua foto e no botão abaixo para compartilhá-la no Instagram.
-        Tire uma foto bem legal, compartilhe a foto acima no Instagram com a hashtag <b>#feiradasprofissoesunifor</b> e participe do sorteio!</string>
+        Tire uma foto bem legal, compartilhe a foto acima no Instagram com a hashtag #feiradasprofissoesunifor e participe do sorteio!</string>
     <string name="botao_compartilhar_instagram">COMPARTILHAR NO INSTAGRAM</string>
+    <string name="copiar_hashtag">Copie a hashtag aqui!</string>
 
 </resources>

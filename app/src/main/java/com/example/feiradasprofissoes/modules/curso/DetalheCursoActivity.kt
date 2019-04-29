@@ -30,11 +30,11 @@ class DetalheCursoActivity : AppCompatActivity() {
         irWebviewCurso.setOnClickListener {
 
             if (ConnectionUtils.isConnectedToInternet(this)) {
-                val intent = Intent(this, WebViewCursoActivity::class.java)
+                val irWebViewIntent = Intent(this, WebViewCursoActivity::class.java)
 
-                intent.putExtra("LINK_CURSO", linkCurso)
+                irWebViewIntent.putExtra("LINK_CURSO", linkCurso)
 
-                startActivity(intent)
+                startActivity(irWebViewIntent)
             } else {
                 val snack = Snackbar.make(constraintLayoutDetalheCurso, "Você está sem conexão com a internet!", Snackbar.LENGTH_SHORT)
                 snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
