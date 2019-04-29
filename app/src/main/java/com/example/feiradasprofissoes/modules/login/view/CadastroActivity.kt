@@ -1,32 +1,26 @@
 package com.example.feiradasprofissoes.modules.login.view
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.feiradasprofissoes.R
 import com.example.feiradasprofissoes.modules.UserData
 import com.example.feiradasprofissoes.modules.util.ConnectionUtils
 import com.example.feiradasprofissoes.modules.util.hideKeyboard
 import com.example.feiradasprofissoes.modules.util.setGone
 import com.example.feiradasprofissoes.modules.util.setVisible
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_cadastro.*
-
-//TODO: Ajustar codigo para a arquitetura MVVM
-//TODO: Fazer verificação de internet ao tentar realizar o cadastro
 
 class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
