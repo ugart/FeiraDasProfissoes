@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayoutDetalheCurso"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -33,7 +33,7 @@
         android:layout_marginEnd="32dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/adsimage"
+        android:src="@drawable/img_ads"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,18 +54,16 @@
         app:layout_constraintTop_toBottomOf="@+id/imageCurso"
         tools:text="Ciência da Computação" />
 
-    <com.codesgood.views.JustifiedTextView
+    <WebView
         android:id="@+id/descricaoCurso"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|end"
         android:layout_marginTop="16dp"
         android:textColor="@color/mediumGray"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/nomeCurso"
         app:layout_constraintStart_toStartOf="@+id/nomeCurso"
-        app:layout_constraintTop_toBottomOf="@+id/nomeCurso"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+        app:layout_constraintTop_toBottomOf="@+id/nomeCurso" />
 
     <com.codesgood.views.JustifiedTextView
         android:id="@+id/irWebviewCurso"
@@ -74,8 +72,11 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/textview_border"
         android:gravity="center"
-        android:padding="8dp"
-        android:textColor="@color/mediumGray"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="9dp"
+        android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/descricaoCurso"
         app:layout_constraintStart_toStartOf="@+id/descricaoCurso"

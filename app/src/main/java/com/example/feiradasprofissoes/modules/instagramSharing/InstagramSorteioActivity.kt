@@ -146,7 +146,7 @@ class InstagramSorteioActivity : AppCompatActivity() {
             if (photoUri != null) {
                 Picasso.with(this)
                         .load(photoUri)
-                        .placeholder(R.drawable.ecaimage)
+                        .placeholder(R.drawable.placeholder_img_sorteio)
                         .into(fotoInstaEvento)
             }
         } catch (e: Exception) {

@@ -3,16 +3,17 @@ package com.example.feiradasprofissoes.modules.curso
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import com.google.android.material.snackbar.Snackbar
-import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.feiradasprofissoes.R
 import com.example.feiradasprofissoes.modules.instagramSharing.InstagramSorteioActivity
 import com.example.feiradasprofissoes.modules.login.view.LoginActivity
 import com.example.feiradasprofissoes.modules.util.ConnectionUtils
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,15 +57,19 @@ class MainActivity : AppCompatActivity() {
             mDatabase?.addValueEventListener(listener)
         }
 
+        val justifyTag = "<html><body style='text-align:justify;'>%s</body></html>"
+        val dataString = String.format(Locale.getDefault(), justifyTag, "*Clique nos cartões acima para obter mais informações dos cursos")
+        labelCursos.loadDataWithBaseURL("", dataString, "text/html", "UTF-8", "")
+
         sairButton.setOnClickListener { botaoLogoutClicked() }
 
-        imageCC.setOnClickListener { imageCcClicked() }
+        cardCC.setOnClickListener { cardCcClicked() }
 
-        imageEC.setOnClickListener { imageEcClicked() }
+        cardEC.setOnClickListener { cardEcClicked() }
 
-        imageECA.setOnClickListener { imageEcaClicked() }
+        cardECA.setOnClickListener { cardEcaClicked() }
 
-        imageADS.setOnClickListener { imageAdsClicked() }
+        cardADS.setOnClickListener { cardAdsClicked() }
 
         irSorteio.setOnClickListener {
             startActivity(Intent(applicationContext, InstagramSorteioActivity::class.java))
@@ -72,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun imageCcClicked() {
+    private fun cardCcClicked() {
         val intent = Intent(this, DetalheCursoActivity::class.java)
 
         id = "1"
@@ -90,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun imageEcClicked() {
+    private fun cardEcClicked() {
         val intent = Intent(this, DetalheCursoActivity::class.java)
 
         id = "2"
@@ -108,7 +113,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun imageEcaClicked() {
+    private fun cardEcaClicked() {
         val intent = Intent(this, DetalheCursoActivity::class.java)
 
         id = "3"
@@ -126,7 +131,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun imageAdsClicked() {
+    private fun cardAdsClicked() {
         val intent = Intent(this, DetalheCursoActivity::class.java)
 
         id = "4"

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.feiradasprofissoes.R
 import com.example.feiradasprofissoes.modules.util.ConnectionUtils
 import kotlinx.android.synthetic.main.activity_detalhe_curso.*
+import java.util.*
 
 class DetalheCursoActivity : AppCompatActivity() {
 
@@ -23,8 +24,11 @@ class DetalheCursoActivity : AppCompatActivity() {
         val textCurso = intent.getStringExtra("TEXT_CURSO")
         val linkCurso = intent.getStringExtra("LINK_CURSO")
 
+        val justifyTag = "<html><body style='text-align:justify;'>%s</body></html>"
+        val dataString = String.format(Locale.getDefault(), justifyTag, textCurso)
+        descricaoCurso.loadDataWithBaseURL("", dataString, "text/html", "UTF-8", "")
+
         nomeCurso.text = titleCurso
-        descricaoCurso.text = textCurso
         irWebviewCurso.text = getString(R.string.maisInfoCurso)
 
         irWebviewCurso.setOnClickListener {
@@ -53,10 +57,10 @@ class DetalheCursoActivity : AppCompatActivity() {
         toolbarDetalheCurso.setNavigationOnClickListener { onBackPressed() }
 
         when (id) {
-            1.toString() -> imageCurso.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ccimage))
-            2.toString() -> imageCurso.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ecimage))
-            3.toString() -> imageCurso.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ecaimage))
-            4.toString() -> imageCurso.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.adsimage))
+            1.toString() -> imageCurso.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.img_cc))
+            2.toString() -> imageCurso.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.img_ec))
+            3.toString() -> imageCurso.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.img_eca))
+            4.toString() -> imageCurso.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.img_ads))
         }
 
     }
