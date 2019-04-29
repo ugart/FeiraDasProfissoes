@@ -52,6 +52,7 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         setSupportActionBar(toolbarCadastro)
 
         if (supportActionBar != null) {
+            supportActionBar!!.title = "Cadastro"
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
 
