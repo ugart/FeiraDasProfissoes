@@ -12,6 +12,8 @@ import com.example.feiradasprofissoes.modules.UserData
 import com.example.feiradasprofissoes.modules.curso.MainActivity
 import com.example.feiradasprofissoes.modules.util.ConnectionUtils
 import com.example.feiradasprofissoes.modules.util.hideKeyboard
+import com.example.feiradasprofissoes.modules.util.setGone
+import com.example.feiradasprofissoes.modules.util.setVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -75,16 +77,22 @@ class LoginActivity : AppCompatActivity() {
             val snack = Snackbar.make(
                 constraintLayoutLogin,
                 "Ops...! Você deve ter digitado algo errado. A senha contém, no mínimo, 8 caracteres. Confira com cuidado!",
-                Snackbar.LENGTH_SHORT
+                Snackbar.LENGTH_LONG
             )
             snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
             snack.show()
             return
         }
 
+        containerLogin.setGone()
+        progressBarLogin.setVisible()
+
         if (ConnectionUtils.isConnectedToInternet(this)) {
 
             mAuth!!.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this@LoginActivity) { task ->
+
+                containerLogin.setVisible()
+                progressBarLogin.setGone()
 
                 if (mAuth?.currentUser != null) {
 
@@ -98,8 +106,6 @@ class LoginActivity : AppCompatActivity() {
 
                             userLoggedIn(true)
                             startNewActivity()
-
-//                            Gson().toJson(UserData())
 
                         } else {
                             val snack = Snackbar.make(
@@ -115,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
                         val snack = Snackbar.make(
                             constraintLayoutLogin,
                             "Você precisa verificar seu e-mail para realizar o login no aplicativo",
-                            Snackbar.LENGTH_SHORT
+                            Snackbar.LENGTH_LONG
                         )
                         snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
                         snack.show()
@@ -125,7 +131,7 @@ class LoginActivity : AppCompatActivity() {
                     val snack = Snackbar.make(
                         constraintLayoutLogin,
                         "Este e-mail não está cadastrado. Realize seu cadastro para utilizar o aplicativo!",
-                        Snackbar.LENGTH_SHORT
+                        Snackbar.LENGTH_LONG
                     )
                     snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
                     snack.show()
@@ -134,6 +140,8 @@ class LoginActivity : AppCompatActivity() {
             }
 
         } else {
+            containerLogin.setVisible()
+            progressBarLogin.setGone()
             val snack =
                 Snackbar.make(constraintLayoutLogin, "Você está sem conexão com a internet!", Snackbar.LENGTH_SHORT)
             snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))

@@ -30,7 +30,7 @@ class InstagramSorteioActivity : AppCompatActivity() {
 
     private var cameraUtil: CameraUtil? = null
 
-    lateinit var uri: Uri
+    var uri: Uri? = null
 
     private var selectImageUtils: SelectImageUtils? = null
 
@@ -65,22 +65,8 @@ class InstagramSorteioActivity : AppCompatActivity() {
 
         toolbarInstaSorteio.setNavigationOnClickListener { onBackPressed() }
 
-        compartilharInstagram.setOnClickListener {
-
-            if (ConnectionUtils.isConnectedToInternet(this)) {
-
-                createInstagramIntent(uri)
-
-            } else {
-                val snack = Snackbar.make(
-                        constraintLayoutInstagramSorteio,
-                        "Você está sem conexão com a internet!",
-                        Snackbar.LENGTH_SHORT
-                )
-                snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
-                snack.show()
-            }
-
+        fotoInstaEvento.setOnClickListener {
+            selectImageUtils?.showDialogSelectImageFrom(this@InstagramSorteioActivity)
         }
 
         selectImageUtils?.setSelectImageUtilCallback(object : SelectImageUtils.SelectImageUtilCallback {
@@ -90,9 +76,36 @@ class InstagramSorteioActivity : AppCompatActivity() {
             }
         })
 
-        fotoInstaEvento.setOnClickListener {
-            selectImageUtils?.showDialogSelectImageFrom(this@InstagramSorteioActivity)
+        compartilharInstagram.setOnClickListener {
+
+            if (ConnectionUtils.isConnectedToInternet(this)) {
+
+                if ( uri != null ) {
+
+                    createInstagramIntent(uri!!)
+
+                } else {
+                    val snack = Snackbar.make(
+                            constraintLayoutInstagramSorteio,
+                            "Tire uma foto ou escolha uma na galera deste dispositivo para poder compartilhar no instagram",
+                            Snackbar.LENGTH_LONG
+                    )
+                    snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
+                    snack.show()
+                }
+
+            } else {
+                val snack = Snackbar.make(
+                        constraintLayoutInstagramSorteio,
+                        "Você está sem conexão com a internet!",
+                        Snackbar.LENGTH_LONG
+                )
+                snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
+                snack.show()
+            }
+
         }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

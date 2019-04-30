@@ -106,7 +106,7 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             val snack = Snackbar.make(
                     constraintLayoutCadastro,
                     "Você precisa de, no mínimo, 8 (oito) caracteres para compor sua senha",
-                    Snackbar.LENGTH_SHORT
+                    Snackbar.LENGTH_LONG
             )
             snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
             snack.show()
@@ -139,20 +139,21 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         }
 
         containerCadastro.setGone()
-        progressBar.setVisible()
+        progressBarCadastro.setVisible()
 
         if (senha == confirmaSenha) {
 
-            containerCadastro.setVisible()
-            progressBar.setGone()
-
             mAuth?.fetchSignInMethodsForEmail(email)?.addOnCompleteListener { task ->
+
                 if (task.result.signInMethods!!.size == 0) {
 
                     if (ConnectionUtils.isConnectedToInternet(this)) {
 
                         mAuth!!.createUserWithEmailAndPassword(email, senha)
                                 .addOnCompleteListener(this@CadastroActivity) {
+
+                                    containerCadastro.setVisible()
+                                    progressBarCadastro.setGone()
 
                                     if (task.isSuccessful) {
 
@@ -169,6 +170,7 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
                                         )
 
                                     } else {
+
                                         val snack = Snackbar.make(
                                                 constraintLayoutCadastro,
                                                 "Seu cadastro falhou!",
@@ -181,6 +183,9 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
                                 }
 
                     } else {
+                        containerCadastro.setVisible()
+                        progressBarCadastro.setGone()
+
                         val snack = Snackbar.make(
                                 constraintLayoutCadastro,
                                 "Você está sem conexão com a internet!",
@@ -191,10 +196,13 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
                     }
 
                 } else {
+                    containerCadastro.setVisible()
+                    progressBarCadastro.setGone()
+
                     val snack = Snackbar.make(
                             constraintLayoutCadastro,
                             "Já existe uma conta criada com o e-mail informado!",
-                            Snackbar.LENGTH_SHORT
+                            Snackbar.LENGTH_LONG
                     )
                     snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
                     snack.show()
@@ -243,7 +251,7 @@ class CadastroActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
                     val snack = Snackbar.make(
                             constraintLayoutCadastro,
                             "Desculpe, não conseguimos enviar seu e-mail de verificação",
-                            Snackbar.LENGTH_SHORT
+                            Snackbar.LENGTH_LONG
                     )
                     snack.view.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
                     snack.show()
